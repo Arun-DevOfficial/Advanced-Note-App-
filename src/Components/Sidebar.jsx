@@ -8,7 +8,7 @@ import { LuTrash } from "react-icons/lu";
 
 export default function Sidebar() {
   return (
-    <aside className="flex flex-col justify-between p-12 w-2/6">
+    <aside className="flex flex-col justify-between p-12 min-h-screen w-72">
       <div>
         <h1 className="text-emerald-600 font-bold text-2xl mb-8">Notifly</h1>
 
@@ -27,7 +27,7 @@ export default function Sidebar() {
             </Link>
           </li>
           <li className="flex items-center gap-2 text-gray-400 font-semibold text-lg cursor-pointer hover:text-emerald-600">
-            <Link to="/dashboard/archive" className="flex items-center gap-2">
+            <Link to="/dashboard/search" className="flex items-center gap-2">
               <CiSearch size={24} color="grey" />
               <p>Search</p>
             </Link>

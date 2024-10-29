@@ -5,6 +5,7 @@ export const NoteContext = createContext(); // Note Context to share
 export const Provider = ({ children }) => {
   const [folderModel, setFolderModel] = useState(false);
   const [NoteModel, setNoteModel] = useState(false);
+  const [notes, setNotes] = useState([]);
   const [users, setUsers] = useState([
     {
       displayName: "",
@@ -22,6 +23,7 @@ export const Provider = ({ children }) => {
         setNoteModel,
         setUsers,
         users,
+        notes,setNotes
       }}
     >
       {children}

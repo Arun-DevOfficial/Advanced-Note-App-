@@ -35,7 +35,7 @@ const Routers = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <Home />, // This renders Home by default at /dashboard
+        element: <Home />,
       },
       {
         path: "calendar",

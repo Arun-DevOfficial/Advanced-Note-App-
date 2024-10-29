@@ -1,21 +1,25 @@
 import Sidebar from "../Components/Sidebar";
 import { Outlet } from "react-router-dom";
 import Navbar from "../Components/Navbar";
+import {NoteContext} from '../Context/NoteContext'
+import { useContext } from "react";
+import NoteForm from "../Components/NoteForm";
 
 function Dashboard() {
+  const {NoteModel} = useContext(NoteContext);
+
   return (
     <>
-      <section className="flex justify-center items-center min-h-screen p-4">
-        <div className="w-9/12  bg-white rounded-md flex flex-col lg:flex-row shadow-md">
-          <Sidebar />
-          <div className="p-5 flex-grow flex flex-col">
-            <Navbar />
-            <div className="mt-5 flex-grow overflow-auto">
-              <Outlet />
-            </div>
+      <section className="flex bg-gray-100">
+        <Sidebar />
+        <div className="flex-grow bg-white rounded-md">
+          <Navbar />
+          <div className="mt-5 flex-grow">
+            <Outlet />
           </div>
         </div>
       </section>
+      {NoteModel && <NoteForm />}
     </>
   );
 }

@@ -1,0 +1,126 @@
+{
+  "folders": [
+    {
+      "id": "8fab",
+      "name": "Office Files",
+      "dueDate": "2024-10-29"
+    }
+  ],
+  "notes": [
+    {
+      "id": "4e14",
+      "title": "Notification Update",
+      "date": "2024-10-29",
+      "description": "Update notification.",
+      "folder": "Important"
+    },
+    {
+      "id": "3842",
+      "title": "Demo Note",
+      "date": "2024-10-29",
+      "description": "Testing Demo Note.",
+      "folder": "Work Notes"
+    },
+    {
+      "id": "4e14",
+      "title": "Notification Update",
+      "date": "2024-10-29",
+      "description": "Update notification.",
+      "folder": "Important"
+    },
+    {
+      "id": "3842",
+      "title": "Demo Note",
+      "date": "2024-10-29",
+      "description": "Testing Demo Note.",
+      "folder": "Work Notes"
+    },
+    {
+      "id": "4e14",
+      "title": "Notification Update",
+      "date": "2024-10-29",
+      "description": "Update notification.",
+      "folder": "Important"
+    },
+    {
+      "id": "3842",
+      "title": "Demo Note",
+      "date": "2024-10-29",
+      "description": "Testing Demo Note.",
+      "folder": "Work Notes"
+    },
+    {
+      "id": "4e14",
+      "title": "Notification Update",
+      "date": "2024-10-29",
+      "description": "Update notification.",
+      "folder": "Important"
+    },
+    {
+      "id": "3842",
+      "title": "Demo Note",
+      "date": "2024-10-29",
+      "description": "Testing Demo Note.",
+      "folder": "Work Notes"
+    },
+    {
+      "id": "4e14",
+      "title": "Notification Update",
+      "date": "2024-10-29",
+      "description": "Update notification.",
+      "folder": "Important"
+    },
+    {
+      "id": "3842",
+      "title": "Demo Note",
+      "date": "2024-10-29",
+      "description": "Testing Demo Note.",
+      "folder": "Work Notes"
+    },
+    {
+      "id": "4e14",
+      "title": "Notification Update",
+      "date": "2024-10-29",
+      "description": "Update notification.",
+      "folder": "Important"
+    },
+    {
+      "id": "3842",
+      "title": "Demo Note",
+      "date": "2024-10-29",
+      "description": "Testing Demo Note.",
+      "folder": "Work Notes"
+    },
+    {
+      "id": "4e14",
+      "title": "Notification Update",
+      "date": "2024-10-29",
+      "description": "Update notification.",
+      "folder": "Important"
+    },
+    {
+      "id": "3842",
+      "title": "Demo Note",
+      "date": "2024-10-29",
+      "description": "Testing Demo Note.",
+      "folder": "Work Notes"
+    },
+    {
+      "id": "ab08",
+      "title": "Project Notes",
+      "date": "2024-10-29",
+      "description": "Note API Almost done without data in vizualization.",
+      "folder": "Personal Notes"
+    }
+  ],
+  "trash": [],
+  "archive": [
+    {
+      "id": "81c4",
+      "title": "",
+      "date": "",
+      "description": "",
+      "folder": ""
+    }
+  ]
+}
