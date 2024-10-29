@@ -1,5 +1,5 @@
 import { Suspense, lazy } from "react";
-import { createBrowserRouter, Outlet } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import Loader from "../Components/Loader";
 import PageNotFound from "../Components/PageNotFound";
 import ErrorPage from "../Components/ErrorPage";
@@ -15,15 +15,18 @@ const SignIn = lazy(() => import("../Pages/SignUp"));
 
 const DashboardLayout = () => (
   <Suspense fallback={<Loader />}>
-    <Dashboard />
-    <Outlet />
+    <Dashboard /> {/* Render the Dashboard layout */}
   </Suspense>
 );
 
 const Routers = createBrowserRouter([
   {
     path: "/",
-    element: <SignIn />,
+    element: (
+      <Suspense fallback={<Loader />}>
+        <SignIn />
+      </Suspense>
+    ),
     errorElement: <ErrorPage />,
   },
   {
@@ -32,7 +35,7 @@ const Routers = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <Home />,
+        element: <Home />, // This renders Home by default at /dashboard
       },
       {
         path: "calendar",

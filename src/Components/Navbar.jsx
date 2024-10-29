@@ -1,8 +1,13 @@
+import { useContext } from "react";
 import { IoSearchOutline } from "react-icons/io5";
 import { CiMenuFries } from "react-icons/ci";
 import { LuUserCircle } from "react-icons/lu";
+import { NoteContext } from "../Context/NoteContext";
 
 export default function Navbar() {
+  const { users } = useContext(NoteContext);
+  console.log(users.photoURL);
+
   return (
     <nav className="flex justify-between items-center">
       <div>
@@ -26,8 +31,22 @@ export default function Navbar() {
 
       <div className="flex gap-12 items-center">
         <div className="flex items-center gap-5">
-          <p className="font-medium text-lg/7">Arun Kumar</p>
-          <LuUserCircle size={23} color="gray"/>
+          <p className="font-medium text-lg">
+            {users ? users.displayName : "Guest"}
+          </p>
+          {users?.photoURL ? ( // Using optional chaining
+            <img
+              src={users.photoURL} // Ensure this URL is correct and accessible
+              alt={users.displayName || "Profile"}
+              className="rounded-full w-8 h-8"
+              onError={(e) => {
+                // Optional: Fallback to a default image if the provided URL fails
+                e.target.src = "https://via.placeholder.com/32"; // Placeholder image
+              }}
+            />
+          ) : (
+            <LuUserCircle size={23} color="gray" />
+          )}
         </div>
         <CiMenuFries size={22} />
       </div>
