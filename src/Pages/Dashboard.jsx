@@ -10,11 +10,11 @@ function Dashboard() {
 
   return (
     <>
-      <section className="flex bg-gray-100">
+      <section className="flex bg-gray-100 w-full">
         <Sidebar />
-        <div className="flex-grow bg-white rounded-md">
+        <div className="bg-white rounded-md w-full">
           <Navbar />
-          <div className="mt-5 flex-grow">
+          <div className="mt-5">
             <Outlet />
           </div>
         </div>

@@ -8,119 +8,21 @@
   ],
   "notes": [
     {
-      "id": "4e14",
-      "title": "Notification Update",
+      "id": "d725",
+      "title": "title",
       "date": "2024-10-29",
-      "description": "Update notification.",
+      "description": "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is available.",
       "folder": "Important"
-    },
-    {
-      "id": "3842",
-      "title": "Demo Note",
-      "date": "2024-10-29",
-      "description": "Testing Demo Note.",
-      "folder": "Work Notes"
-    },
-    {
-      "id": "4e14",
-      "title": "Notification Update",
-      "date": "2024-10-29",
-      "description": "Update notification.",
-      "folder": "Important"
-    },
-    {
-      "id": "3842",
-      "title": "Demo Note",
-      "date": "2024-10-29",
-      "description": "Testing Demo Note.",
-      "folder": "Work Notes"
-    },
-    {
-      "id": "4e14",
-      "title": "Notification Update",
-      "date": "2024-10-29",
-      "description": "Update notification.",
-      "folder": "Important"
-    },
-    {
-      "id": "3842",
-      "title": "Demo Note",
-      "date": "2024-10-29",
-      "description": "Testing Demo Note.",
-      "folder": "Work Notes"
-    },
-    {
-      "id": "4e14",
-      "title": "Notification Update",
-      "date": "2024-10-29",
-      "description": "Update notification.",
-      "folder": "Important"
-    },
-    {
-      "id": "3842",
-      "title": "Demo Note",
-      "date": "2024-10-29",
-      "description": "Testing Demo Note.",
-      "folder": "Work Notes"
-    },
-    {
-      "id": "4e14",
-      "title": "Notification Update",
-      "date": "2024-10-29",
-      "description": "Update notification.",
-      "folder": "Important"
-    },
-    {
-      "id": "3842",
-      "title": "Demo Note",
-      "date": "2024-10-29",
-      "description": "Testing Demo Note.",
-      "folder": "Work Notes"
-    },
-    {
-      "id": "4e14",
-      "title": "Notification Update",
-      "date": "2024-10-29",
-      "description": "Update notification.",
-      "folder": "Important"
-    },
-    {
-      "id": "3842",
-      "title": "Demo Note",
-      "date": "2024-10-29",
-      "description": "Testing Demo Note.",
-      "folder": "Work Notes"
-    },
-    {
-      "id": "4e14",
-      "title": "Notification Update",
-      "date": "2024-10-29",
-      "description": "Update notification.",
-      "folder": "Important"
-    },
-    {
-      "id": "3842",
-      "title": "Demo Note",
-      "date": "2024-10-29",
-      "description": "Testing Demo Note.",
-      "folder": "Work Notes"
-    },
-    {
-      "id": "ab08",
-      "title": "Project Notes",
-      "date": "2024-10-29",
-      "description": "Note API Almost done without data in vizualization.",
-      "folder": "Personal Notes"
     }
   ],
   "trash": [],
   "archive": [
     {
-      "id": "81c4",
-      "title": "",
-      "date": "",
-      "description": "",
-      "folder": ""
+      "id": "19de",
+      "title": "Title",
+      "date": "2024-10-22",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae sunt id, at provident magnam voluptates, quidem aut temporibus tenetur nobis fugiat ut cum illum doloremque placeat velit, ullam ducimus exercitationem?\nLorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, rerum explicabo. Nostrum iusto necessitatibus voluptatem. Fuga doloremque, sequi accusamus iure odit debitis officia vel, modi aliquam nesciunt aliquid enim blanditiis?",
+      "folder": "Important"
     }
   ]
 }

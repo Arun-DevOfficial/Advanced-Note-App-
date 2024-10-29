@@ -6,6 +6,9 @@ import { AiOutlineFileAdd } from "react-icons/ai";
 import { NoteContext } from "../Context/NoteContext";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
+import { useFetchFolders } from "../Hooks/useCreateFolder";
+import { toast, Toaster } from "react-hot-toast";
+import { useFetchNotes } from "../Hooks/useNotes";
 
 // Define a professional color palette
 const colorPalette = [
@@ -19,16 +22,27 @@ const colorPalette = [
   "#D4FF33",
 ];
 
-// Function to get a random color from the color palette
+// Random color from the color palette
 const getRandomColor = () => {
   return colorPalette[Math.floor(Math.random() * colorPalette.length)];
 };
 
 export default function Home() {
   const { NoteModel, setNoteModel } = useContext(NoteContext);
+  const { data: folders, isLoading, error } = useFetchFolders();
+  const { data: Notes } = useFetchNotes();
+
+  //Error Handling & Loader inticator
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+  if (error) {
+    toast.error("Failed to fetch!");
+  }
+
   return (
     <>
-      <section className="p-4 rounded-lg">
+      <section className="p-4 rounded-lg overflow-x-hidden">
         <div id="Recent Folder" className="flex flex-col gap-5 py-8">
           <h1 className="font-semibold text-2xl">Recent Folders</h1>
           <ul className="flex gap-5">
@@ -37,47 +51,52 @@ export default function Home() {
             <li className="font-medium text-gray-400 text-md">This Month</li>
           </ul>
           {/* Folder Carousel */}
-          <div id="Carousel" className="flex">
+          <div
+            id="Carousel"
+            className="w-full overflow-hidden flex items-center"
+          >
             <Splide
               options={{
-                perPage: 3,
+                perPage: 5,
                 pagination: false,
-                arrows: false, // You can change this to false if you don't want arrows
-                gap: "1rem", // Space between slides
-                width: "60%", // Full width
+                arrows: false, // Set to false to hide arrows
+                gap: "0px", // Space between slides
+                width: "100%", // Ensures the full width of the carousel container
                 breakpoints: {
                   640: {
                     perPage: 1,
-                    width: "90%", // Full width on small screens
+                    width: "100%", // Full width on small screens
                   },
                   768: {
                     perPage: 2,
-                    width: "80%", // 80% width on medium screens
+                    width: "90%", // 90% width on medium screens
                   },
                 },
               }}
+              className="flex-shrink flex-grow-0 w-full"
             >
-              <SplideSlide>
-                <div className="flex gap-5">
-                  {Array.from({ length: 3 }, (_, index) => {
-                    const randomColor = getRandomColor(); // Get a random color from the palette
-                    return (
-                      <div key={index}>
-                        <NoteFolder
-                          color={randomColor}
-                          folderName={""}
-                          date={""}
-                        />
-                      </div>
-                    );
-                  })}
-                </div>
-              </SplideSlide>
+              {folders?.map((folder, index) => {
+                const randomColor = getRandomColor(); // Get a random color from the palette
+                return (
+                  <SplideSlide key={index}>
+                    <div className="flex items-center justify-center">
+                      <NoteFolder
+                        color={randomColor}
+                        folderName={folder.name}
+                        date={folder.dueDate}
+                        className="min-w-[250px] max-w-[250px] h-[200px] rounded-lg p-4"
+                      />
+                    </div>
+                  </SplideSlide>
+                );
+              })}
             </Splide>
-            <div className="p-4">
+            <div className="p-4 flex-shrink-0">
               <Createfolder />
             </div>
           </div>
+
+          {/* Folder Carousel */}
         </div>
         <div id="Recent Folder" className="flex flex-col gap-5 py-8">
           <div className="flex justify-between items-center">
@@ -107,32 +126,36 @@ export default function Home() {
               options={{
                 perPage: 3,
                 pagination: false,
-                arrows: false, // Set to false if you don't want arrows
-                gap: "1rem", // Space between slides
-                width: "100%", // Full width
+                arrows: false,
+                gap: "1rem",
                 breakpoints: {
                   640: {
                     perPage: 1,
-                    width: "90%", // Full width on small screens
+                    width: "90%",
                   },
                   768: {
                     perPage: 2,
-                    width: "80%", // 80% width on medium screens
+                    width: "80%",
                   },
                 },
               }}
             >
-              {Array.from({ length: 3 }, (_, index) => (
+              {Notes?.map((note, index) => (
                 <SplideSlide key={index}>
-                  <div className="flex justify-center">
-                    <NoteCard />
-                  </div>
+                  <NoteCard
+                    id={note.id}
+                    date={note.date}
+                    Title={note.title}
+                    folderName={note.folder}
+                    desc={note.description}
+                  />
                 </SplideSlide>
               ))}
             </Splide>
           </div>
         </div>
       </section>
+      <Toaster />
     </>
   );
 }
