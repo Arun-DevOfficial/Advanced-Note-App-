@@ -4,7 +4,6 @@ import { CiMenuFries } from "react-icons/ci";
 import { LuUserCircle } from "react-icons/lu";
 import { NoteContext } from "../Context/NoteContext";
 import { useSearchNotes } from "../Hooks/useSearchNotes"; // Import the search notes hook
-import Loader from "./Loader";
 import { toast, Toaster } from "react-hot-toast";
 
 export default function Navbar() {
@@ -23,10 +22,11 @@ export default function Navbar() {
   // Use the search notes hook with the debounced search term
   const {
     data: searchResults,
-    isLoading,
+
     isError,
   } = useSearchNotes(debouncedSearchTerm);
   console.log("Search Results:", searchResults);
+
   // Update setNotes context when searchResults is successfully fetched
   useEffect(() => {
     if (searchResults) {
@@ -39,7 +39,6 @@ export default function Navbar() {
     setSearchTerm(e.target.value);
   };
 
-  if (isLoading) return <Loader />;
   if (isError) return toast.error("Failed to search result!");
 
   return (
@@ -69,15 +68,17 @@ export default function Navbar() {
           <div className="flex gap-12 items-center">
             <div className="flex items-center gap-5">
               <p className="font-medium text-lg">
-                {users?.displayName || "Guest"}
+                {users?.displayName || "Guest"}{" "}
+                {/* Use fetched user's display name */}
               </p>
               {users?.photoURL ? (
                 <img
-                  src={users.photoURL}
+                  src={users?.photoURL} // Use fetched user's photoURL
                   alt={users.displayName || "Profile"}
                   className="rounded-full w-8 h-8"
                   onError={(e) => {
-                    e.target.src = "https://via.placeholder.com/32"; // Placeholder image
+                    e.target.src =
+                      "https://img.freepik.com/free-vector/mysterious-mafia-man-smoking-cigarette_52683-34828.jpg?t=st=1730259992~exp=1730263592~hmac=a5208271330bec31877056d193244145984403690842458093dfb91ce323be5a&w=826"; // Placeholder image
                   }}
                 />
               ) : (

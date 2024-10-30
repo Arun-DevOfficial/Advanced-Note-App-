@@ -1,19 +1,35 @@
-import { useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { LuFileEdit } from "react-icons/lu";
 import { PiTimer } from "react-icons/pi";
 import { IoEllipsisVerticalOutline } from "react-icons/io5";
-import { useDeleteFolder } from "../Hooks/useCreateFolder";
+import { useDeleteNote } from "../Hooks/useNotes";
+import { NoteContext } from "../Context/NoteContext";
 
 export default function NoteCard({ id, date, Title, folderName, desc }) {
   const [showTooltip, setShowTooltip] = useState(false);
-  const deleteFolderMutation = useDeleteFolder();
+  const [formattedDate, setFormattedDate] = useState("");
+  const deleteNoteMutation = useDeleteNote();
+  const { setUpdateNoteModel, UpdateNoteModel } = useContext(NoteContext);
 
   const handleDelete = () => {
-    console.log(id);
-    deleteFolderMutation.mutate(id); // Pass the folder ID to delete
+    deleteNoteMutation.mutate(id); // Pass the note ID to delete
     setShowTooltip(false); // Close the tooltip after delete
-    console.log();
   };
+
+  useEffect(() => {
+    const formatDate = (dateString) => {
+      const options = {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+        weekday: "long",
+      };
+      const dateObj = new Date(dateString);
+      return dateObj.toLocaleString("en-US", options);
+    };
+
+    setFormattedDate(formatDate(date)); // Format the date
+  }, [date]);
 
   return (
     <div className="relative bg-white p-6 rounded-lg cursor-pointer h-[360px] transition-shadow duration-300 border border-gray-200">
@@ -25,15 +41,17 @@ export default function NoteCard({ id, date, Title, folderName, desc }) {
           </div>
 
           <div className="cursor-pointer flex gap-3 items-center relative">
-            <LuFileEdit size={24} className="text-gray-400" />
-
+            <LuFileEdit
+              size={24}
+              className="text-gray-400"
+              onClick={() => setUpdateNoteModel(!UpdateNoteModel)}
+            />
             {/* Ellipsis Icon */}
             <IoEllipsisVerticalOutline
               size={24}
               className="text-gray-400"
               onClick={() => setShowTooltip((prev) => !prev)}
             />
-
             {/* Tooltip */}
             {showTooltip && (
               <div
@@ -44,7 +62,7 @@ export default function NoteCard({ id, date, Title, folderName, desc }) {
               >
                 <button
                   className="text-red-500 font-medium"
-                  onClick={() => handleDelete(id)}
+                  onClick={handleDelete} // Use handleDelete directly here
                 >
                   Delete
                 </button>
@@ -60,7 +78,7 @@ export default function NoteCard({ id, date, Title, folderName, desc }) {
         <div className="flex gap-3 items-center mt-4 text-gray-500">
           <PiTimer size={21} />
           <p>{folderName}</p>
-          <p>04:30 PM, Sunday</p>
+          <p>{formattedDate}</p> {/* Updated to show formatted date */}
         </div>
       </div>
     </div>

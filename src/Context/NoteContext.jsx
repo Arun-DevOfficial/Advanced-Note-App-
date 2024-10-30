@@ -5,6 +5,7 @@ export const NoteContext = createContext(); // Note Context to share
 export const Provider = ({ children }) => {
   const [folderModel, setFolderModel] = useState(false);
   const [NoteModel, setNoteModel] = useState(false);
+  const [UpdateNoteModel, setUpdateNoteModel] = useState(false);
   const [notes, setNotes] = useState([]);
   const [users, setUsers] = useState([
     {
@@ -13,6 +14,12 @@ export const Provider = ({ children }) => {
       photoURL: "",
     },
   ]);
+
+  // Function to set user and save it to localStorage
+  const handleSetUser = (user) => {
+    setUsers(user);
+    localStorage.setItem("user", JSON.stringify(user)); // Store user data in localStorage
+  };
 
   return (
     <NoteContext.Provider
@@ -23,7 +30,11 @@ export const Provider = ({ children }) => {
         setNoteModel,
         setUsers,
         users,
-        notes,setNotes
+        notes,
+        setNotes,
+        UpdateNoteModel,
+        setUpdateNoteModel,
+        handleSetUser
       }}
     >
       {children}

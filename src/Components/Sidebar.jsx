@@ -1,4 +1,4 @@
-import { CiCalendar } from "react-icons/ci";
+// import { CiCalendar } from "react-icons/ci";
 import { Link } from "react-router-dom"; // Import Link for navigation
 import Upgrade from "../assets/upgrade.svg";
 import { CiSearch } from "react-icons/ci";
@@ -20,12 +20,12 @@ export default function Sidebar() {
               <p>Dashboard</p>
             </Link>
           </li>
-          <li className="flex items-center gap-2 text-gray-400 font-semibold text-lg cursor-pointer hover:text-emerald-600">
+          {/* <li className="flex items-center gap-2 text-gray-400 font-semibold text-lg cursor-pointer hover:text-emerald-600">
             <Link to="/dashboard/calendar" className="flex items-center gap-2">
               <CiCalendar size={24} />
               <p>Calendar</p>
             </Link>
-          </li>
+          </li> */}
           <li className="flex items-center gap-2 text-gray-400 font-semibold text-lg cursor-pointer hover:text-emerald-600">
             <Link to="/dashboard/search" className="flex items-center gap-2">
               <CiSearch size={24} color="grey" />

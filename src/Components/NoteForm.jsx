@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { useCreateNote } from "../Hooks/useNotes"; // Import the custom hook
 import { NoteContext } from "../Context/NoteContext";
 import { toast, Toaster } from "react-hot-toast"; // Import toast from react-hot-toast
-import axios from "axios"; // Import axios for API requests
+import { useArchiveData } from "../Hooks/useArchiveData"; // Import the archive hook
 
 export default function NoteForm() {
   const { NoteModel, setNoteModel } = useContext(NoteContext);
@@ -17,25 +17,8 @@ export default function NoteForm() {
   // Initialize the create note mutation
   const createNoteMutation = useCreateNote();
 
-  // Function to handle draft saving
-  const saveDraft = async (noteData) => {
-    try {
-      const response = await axios.post(
-        "http://localhost:3000/archive",
-        noteData
-      );
-      toast.success("Draft saved successfully!");
-      console.log(response.data);
-      // Reset form fields after saving the draft
-      setTitle("");
-      setDate("");
-      setDescription("");
-      setSelectedFolder("");
-    } catch (error) {
-      toast.error("Failed to save draft. Please try again.");
-      console.log(error);
-    }
-  };
+  // Initialize the archive mutation
+  const archiveMutation = useArchiveData().postArchive;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -57,6 +40,31 @@ export default function NoteForm() {
       },
       onError: (error) => {
         toast.error("Failed to create note. Please try again.");
+        console.log(error);
+      },
+    });
+  };
+
+  const handleDraftSubmit = async () => {
+    const draftData = {
+      title,
+      date,
+      description,
+      folder: selectedFolder,
+    };
+
+    // Trigger the archive mutation to save the draft
+    archiveMutation(draftData, {
+      onSuccess: () => {
+        toast.success("Draft saved successfully!");
+        // Reset form fields after saving the draft
+        setTitle("");
+        setDate("");
+        setDescription("");
+        setSelectedFolder("");
+      },
+      onError: (error) => {
+        toast.error("Failed to save draft. Please try again.");
         console.log(error);
       },
     });
@@ -156,14 +164,7 @@ export default function NoteForm() {
               <button
                 type="button"
                 className="bg-transparent border border-gray-300 text-gray-800 py-2 px-6 rounded-md hover:bg-gray-200 transition-colors duration-200"
-                onClick={() =>
-                  saveDraft({
-                    title,
-                    date,
-                    description,
-                    folder: selectedFolder,
-                  })
-                }
+                onClick={handleDraftSubmit} // Call handleDraftSubmit for saving the draft
               >
                 Add Draft
               </button>

@@ -1,17 +1,12 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
+import { supabase } from "../Services/supabaseClient"; // Ensure this points to your actual Supabase client file
+
 
 // Function to create a new folder
 const createFolder = async (folderData) => {
-  try {
-    const response = await axios.post(
-      "http://localhost:3000/folders",
-      folderData
-    );
-    return response.data;
-  } catch (error) {
-    throw new Error(error.response?.data?.message || "Failed to create folder");
-  }
+  const { data, error } = await supabase.from("folders").insert(folderData);
+  if (error) throw new Error(error.message || "Failed to create folder");
+  return data;
 };
 
 // Custom hook for creating a folder
@@ -29,12 +24,9 @@ export const useCreateFolder = () => {
 
 // Function to fetch all folders
 const getFolders = async () => {
-  try {
-    const response = await axios.get("http://localhost:3000/folders");
-    return response.data;
-  } catch (error) {
-    throw new Error(error.response?.data?.message || "Failed to fetch folders");
-  }
+  const { data, error } = await supabase.from("folders").select("*");
+  if (error) throw new Error(error.message || "Failed to fetch folders");
+  return data;
 };
 
 // Custom hook for fetching folders
@@ -51,13 +43,9 @@ export const useFetchFolders = () => {
 
 // Function to delete a folder by ID
 const deleteFolder = async (folderId) => {
-  console.log(folderId);
-  try {
-    await axios.delete(`http://localhost:3000/folders/${folderId}`);
-    return folderId;
-  } catch (error) {
-    throw new Error(error.response?.data?.message || "Failed to delete folder");
-  }
+  const { error } = await supabase.from("folders").delete().eq("id", folderId);
+  if (error) throw new Error(error.message || "Failed to delete folder");
+  return folderId;
 };
 
 // Custom hook for deleting a folder

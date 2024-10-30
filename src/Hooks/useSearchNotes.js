@@ -1,14 +1,16 @@
-// Hooks/useSearchNotes.js
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import { supabase } from "../Services/supabaseClient"; // Ensure this points to your actual Supabase client file
+
 
 // Function to fetch notes based on a search term
 const fetchNotes = async (searchTerm) => {
-  const response = await axios.get(`http://localhost:3000/notes`);
-  const filteredData = response.data.filter((note) =>
-    note.title.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-  return filteredData;
+  const { data, error } = await supabase
+    .from("Notes") // Replace with your actual table name
+    .select("*")
+    .ilike("title", `%${searchTerm}%`); // Use ilike for case-insensitive matching
+
+  if (error) throw new Error(error.message);
+  return data;
 };
 
 // Custom hook for searching notes
