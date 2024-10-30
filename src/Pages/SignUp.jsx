@@ -37,7 +37,7 @@ function Signup() {
         toast.error("Phone number already exists. Please log in.");
       } else {
         register(
-          { phone },
+          { phoneNumber: phone },
           {
             onSuccess: () => {
               toast.success("Registration successful!");
