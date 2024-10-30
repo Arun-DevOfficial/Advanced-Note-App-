@@ -1,6 +1,5 @@
 // import { CiCalendar } from "react-icons/ci";
 import { Link } from "react-router-dom"; // Import Link for navigation
-import Upgrade from "../assets/upgrade.svg";
 import { CiSearch } from "react-icons/ci";
 import { MdOutlineDashboard } from "react-icons/md";
 import { RiDraftLine } from "react-icons/ri";
@@ -52,7 +51,11 @@ export default function Sidebar() {
         <p className="text-gray-700 font-medium text-sm mb-4 text-balance">
           Want unlimited note-taking features & more?
         </p>
-        <img src={Upgrade} alt="Upgrade Pro" className="w-32 mx-auto mb-4" />
+        <img
+          src="https://img.freepik.com/free-vector/agile-method-concept-illustration_114360-9826.jpg?t=st=1730266643~exp=1730270243~hmac=c4b8059fe7302baf8b1cec8365a87c5e431e95c70b0247a82649f3672a963d4c&w=1380"
+          alt="Upgrade Pro"
+          className="w-32 mx-auto mb-4"
+        />
         <button className="w-full bg-emerald-600 text-white py-2 rounded-md font-semibold hover:bg-emerald-700 transition-colors duration-200">
           Upgrade Pro
         </button>
